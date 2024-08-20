@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_ant/shop_screen.dart';
 
 class InterestsScreen extends StatefulWidget {
   @override
@@ -10,8 +11,18 @@ class _InterestsScreenState extends State<InterestsScreen> {
   String selectedDistance = "10 miles";
   List<String> selectedInterests = [];
 
-  final List<String> stores = ["Select a Store", "Store 1", "Store 2", "Store 3"];
-  final List<String> distances = ["10 miles", "20 miles", "30 miles", "40 miles"];
+  final List<String> stores = [
+    "Select a Store",
+    "Store 1",
+    "Store 2",
+    "Store 3"
+  ];
+  final List<String> distances = [
+    "10 miles",
+    "20 miles",
+    "30 miles",
+    "40 miles"
+  ];
   final List<Map<String, dynamic>> interests = [
     {"name": "Events", "image": "assets/events.jpg"},
     {"name": "Fashion & jewellery", "image": "assets/fashion_jewelry.jpg"},
@@ -122,7 +133,8 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 itemCount: interests.length,
                 itemBuilder: (context, index) {
                   final interest = interests[index];
-                  final isSelected = selectedInterests.contains(interest["name"]);
+                  final isSelected =
+                      selectedInterests.contains(interest["name"]);
 
                   return GestureDetector(
                     onTap: () {
@@ -180,7 +192,10 @@ class _InterestsScreenState extends State<InterestsScreen> {
             // Get Results Button
             ElevatedButton(
               onPressed: () {
-                // Handle Get Results logic here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ShopScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.pink,
