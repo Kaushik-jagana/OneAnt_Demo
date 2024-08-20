@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_ant/interests_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -76,6 +77,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               onPressed: () {
                 if (_acceptedTerms) {
                   // Complete sign-up process
+                      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => InterestsScreen()),
+    );
                 } else {
                   // Show a warning to accept terms
                 }
