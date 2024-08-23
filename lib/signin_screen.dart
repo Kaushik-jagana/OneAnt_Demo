@@ -9,12 +9,13 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController phoneController = TextEditingController();
   String _selectedCountry = 'India';
+  String _countryCode = '+91';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign in / Sign up'),
+        title: Text('Sign in or Sign up'),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
@@ -24,24 +25,34 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Country Selector Dropdown
-            DropdownButtonFormField<String>(
-              value: _selectedCountry,
-              items: ['India', 'USA', 'Canada', 'Australia'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              decoration: InputDecoration(
-                labelText: 'Country',
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedCountry = newValue!;
-                });
+            // Country Selector Dropdown (Custom Design)
+            GestureDetector(
+              onTap: () {
+                _openCountrySelector(context);
               },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      '$_countryCode',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        _selectedCountry,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Icon(Icons.arrow_drop_down),
+                  ],
+                ),
+              ),
             ),
             SizedBox(height: 20),
             // Phone Number Input Field
@@ -60,7 +71,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 // Navigate to OTP confirmation screen (Frame 07)
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => OtpConfirmationScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => OtpConfirmationScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -71,6 +83,65 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _openCountrySelector(BuildContext context) async {
+    final result = await showModalBottomSheet<Map<String, String>>(
+      context: context,
+      builder: (context) {
+        return CountrySelectorModal();
+      },
+    );
+    if (result != null) {
+      setState(() {
+        _selectedCountry = result['country']!;
+        _countryCode = result['code']!;
+      });
+    }
+  }
+}
+
+class CountrySelectorModal extends StatelessWidget {
+  final List<Map<String, String>> countries = [
+    {'country': 'India', 'code': '+91'},
+    {'country': 'USA', 'code': '+1'},
+    {'country': 'Canada', 'code': '+1'},
+    {'country': 'Australia', 'code': '+61'},
+    // Add more countries here
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Country',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: countries.length,
+              itemBuilder: (context, index) {
+                final country = countries[index];
+                return ListTile(
+                  leading: Icon(Icons.flag), // Placeholder for flag
+                  title: Text(country['country']!),
+                  trailing: Text(country['code']!),
+                  onTap: () {
+                    Navigator.pop(context, country);
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -98,15 +169,27 @@ class _OtpConfirmationScreenState extends State<OtpConfirmationScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              "Enter the code we've sent by SMS to 98765 43210:",
+              style: TextStyle(fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10),
+            // OTP Input Field
             TextField(
               controller: otpController,
               keyboardType: TextInputType.number,
+              maxLength: 6,
               decoration: InputDecoration(
-                labelText: 'Enter OTP',
+                labelText: '------',
                 border: OutlineInputBorder(),
+                counterText: "",
               ),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 24, letterSpacing: 32),
             ),
             SizedBox(height: 20),
+            // Confirm Button
             ElevatedButton(
               onPressed: () {
                 // Handle OTP verification and navigate to the signup page (Frame 08)
@@ -122,6 +205,7 @@ class _OtpConfirmationScreenState extends State<OtpConfirmationScreen> {
               child: Text('Confirm'),
             ),
             SizedBox(height: 10),
+            // Resend SMS Option
             TextButton(
               onPressed: () {
                 // Handle resend OTP

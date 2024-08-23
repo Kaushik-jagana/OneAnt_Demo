@@ -53,7 +53,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     height: 24,
                     color: Colors.transparent, // Placeholder for "x" button
                   ),
-                  Text(
+                  const Text(
                     'Pick Interests',
                     style: TextStyle(
                       fontFamily: 'Inter',
@@ -72,7 +72,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
             ),
             SizedBox(height: 16),
             // Subtitle
-            Text(
+            const Text(
               'Jump start your recommendations',
               style: TextStyle(
                 fontFamily: 'Inter',

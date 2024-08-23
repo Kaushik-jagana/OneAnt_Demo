@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:one_ant/more_screen.dart';
 
 class ShopScreen extends StatelessWidget {
   @override
@@ -230,6 +231,14 @@ class ShopScreen extends StatelessWidget {
         currentIndex: 0, // Set the current index as needed
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+        onTap: (int index){
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MoreScreen()),
+            );
+          }
+        },
       ),
     );
   }
