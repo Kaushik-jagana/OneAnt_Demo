@@ -16,88 +16,100 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Finish Signing up'),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/default_avatar.png'), // Add default avatar image in assets
-            ),
-            SizedBox(height: 10),
-            TextButton(
-              onPressed: () {
-                // Handle photo upload
-                _showPhotoOptions(context);
-              },
-              child: Text('Upload your photo'),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: firstNameController,
-              decoration: InputDecoration(
-                labelText: 'First name',
-                border: OutlineInputBorder(),
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/default_avatar.jpeg'),
               ),
-            ),
-            SizedBox(height: 20),
-            TextField(
-              controller: lastNameController,
-              decoration: InputDecoration(
-                labelText: 'Last name',
-                border: OutlineInputBorder(),
+              SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  // Handle photo upload
+                  _showPhotoOptions(context);
+                },
+                child: Text('Upload your photo'),
               ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Checkbox(
-                  value: _acceptedTerms,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _acceptedTerms = value!;
-                    });
-                  },
+              SizedBox(height: 20),
+              TextField(
+                controller: firstNameController,
+                decoration: InputDecoration(
+                  labelText: 'First name',
+                  border: OutlineInputBorder(),
                 ),
-                Expanded(
-                  child: Text(
-                    "I accept T&C, Privacy Policy",
-                    style: TextStyle(fontSize: 14),
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: lastNameController,
+                decoration: InputDecoration(
+                  labelText: 'Last name',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Checkbox(
+                    value: _acceptedTerms,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        _acceptedTerms = value!;
+                      });
+                    },
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (_acceptedTerms) {
-                  // Complete sign-up process
-                      Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => InterestsScreen()),
-    );
-                } else {
-                  // Show a warning to accept terms
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink,
-                padding: EdgeInsets.symmetric(vertical: 15),
+                  Expanded(
+                    child: Text(
+                      "I accept T&C, Privacy Policy",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
               ),
-              child: Text('Get Started'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Handle skipping the sign-up
-              },
-              child: Text('I’ll do it later'),
-            ),
-          ],
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_acceptedTerms) {
+                    // Complete sign-up process
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => InterestsScreen()),
+                    );
+                  } else {
+                    // Show a warning to accept terms
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pink,
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: Size(double.infinity, 50), // Full-width button
+                ),
+                child: Text(
+                  'Get Started',
+                  style:
+                      TextStyle(color: Colors.black), // Set text color to black
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Handle skipping the sign-up
+                },
+                child: Text('I’ll do it later'),
+              ),
+            ],
+          ),
         ),
       ),
     );
