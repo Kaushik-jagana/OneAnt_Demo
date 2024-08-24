@@ -21,17 +21,20 @@ class NotificationsScreen extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('Request to join the group "XYZ" is accepted'),
-            subtitle: Text('2 days ago'),
-          ),
-          ListTile(
-            title: Text('Owner’s privacy and policies have been updated'),
-            subtitle: Text('5 days ago'),
-          ),
-        ],
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text('Request to join the group "XYZ" is accepted'),
+              subtitle: Text('2 days ago'),
+            ),
+            ListTile(
+              title: Text('Owner’s privacy and policies have been updated'),
+              subtitle: Text('5 days ago'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -21,38 +21,41 @@ class GroupsScreen extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: Column(
-        children: [
-          ListTile(
-            title: Text('Sky Importers'),
-            subtitle: Text('Top Groups'),
-            trailing: ElevatedButton(
-              onPressed: () {
-                // Handle Join Request
-              },
-              child: Text('Request to Join'),
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            ListTile(
+              title: Text('Sky Importers'),
+              subtitle: Text('Top Groups'),
+              trailing: ElevatedButton(
+                onPressed: () {
+                  // Handle Join Request
+                },
+                child: Text('Request to Join'),
+              ),
             ),
-          ),
-          ListTile(
-            title: Text('Quick Buy'),
-            subtitle: Text('My Groups'),
-            trailing: ElevatedButton(
-              onPressed: () {
-                // Handle Manage Group
-              },
-              child: Text('Manage'),
+            ListTile(
+              title: Text('Quick Buy'),
+              subtitle: Text('My Groups'),
+              trailing: ElevatedButton(
+                onPressed: () {
+                  // Handle Manage Group
+                },
+                child: Text('Manage'),
+              ),
             ),
-          ),
-          ListTile(
-            title: Text('Make your Group'),
-            trailing: ElevatedButton(
-              onPressed: () {
-                // Handle Create Group
-              },
-              child: Text('Create a Group'),
+            ListTile(
+              title: Text('Make your Group'),
+              trailing: ElevatedButton(
+                onPressed: () {
+                  // Handle Create Group
+                },
+                child: Text('Create a Group'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

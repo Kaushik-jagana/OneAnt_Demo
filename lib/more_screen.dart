@@ -18,58 +18,63 @@ class MoreScreen extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.png'), // Placeholder
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          children: [
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage:
+                    AssetImage('assets/default_avatar.jpeg'), // Placeholder
+              ),
+              title: Text('Shiv K'),
+              subtitle: Text('View Profile'),
             ),
-            title: Text('Shiv K'),
-            subtitle: Text('View Profile'),
-          ),
-          ListTile(
-            title: Text('Notifications'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationsScreen()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Groups'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GroupsScreen()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Settings & Privacy'),
-            onTap: () {
-              // Navigate to Settings & Privacy Screen
-            },
-          ),
-          ListTile(
-            title: Text('Become a Supplier'),
-            onTap: () {
-              // Navigate to Become a Supplier Screen
-            },
-          ),
-          ListTile(
-            title: Text('Terms & Conditions'),
-            onTap: () {
-              // Navigate to Terms & Conditions Screen
-            },
-          ),
-          ListTile(
-            title: Text('Logout'),
-            onTap: () {
-              // Handle Logout
-            },
-          ),
-        ],
+            ListTile(
+              title: Text('Notifications'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NotificationsScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Groups'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GroupsScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Settings & Privacy'),
+              onTap: () {
+                // Navigate to Settings & Privacy Screen
+              },
+            ),
+            ListTile(
+              title: Text('Become a Supplier'),
+              onTap: () {
+                // Navigate to Become a Supplier Screen
+              },
+            ),
+            ListTile(
+              title: Text('Terms & Conditions'),
+              onTap: () {
+                // Navigate to Terms & Conditions Screen
+              },
+            ),
+            ListTile(
+              title: Text('Logout'),
+              onTap: () {
+                // Handle Logout
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

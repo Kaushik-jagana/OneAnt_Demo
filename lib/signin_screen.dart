@@ -126,7 +126,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: _sendOtp,
-                          child: Text('Continue'),
+                          child: Text(
+                            'Continue',
+                            style: TextStyle(color: Colors.black),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                             padding: EdgeInsets.symmetric(vertical: 15),
@@ -161,7 +164,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: _verifyOtp,
-                          child: Text('Continue'),
+                          child: Text(
+                            'Continue',
+                            style: TextStyle(color: Colors.black),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                             padding: EdgeInsets.symmetric(vertical: 15),

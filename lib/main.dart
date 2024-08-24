@@ -29,7 +29,8 @@ class OnboardingScreen extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/events.jpg'), // Add your background image in the assets folder
+                image: AssetImage(
+                    'assets/background1.jpeg'), // Add your background image in the assets folder
                 fit: BoxFit.cover,
               ),
             ),
@@ -43,7 +44,7 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 // Logo
                 const Text(
-                  'ant',
+                  'OneAnt',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 48,
@@ -63,16 +64,19 @@ class OnboardingScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignInScreen()),
-    );
-  },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink,
+                    backgroundColor: Colors.red,
                     padding: EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: Text('Continue with Phone Number'),
+                  child: Text(
+                    'Continue with Phone Number',
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
                 SizedBox(height: 10),
                 ElevatedButton.icon(
